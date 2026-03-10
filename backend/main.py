@@ -196,7 +196,7 @@ def get_usage():
                 "ending_at": period_end.strftime("%Y-%m-%dT23:59:59Z"),
                 "group_by[]": "model",
                 "bucket_width": "1d",
-                "limit": 31,
+                "limit": 100,
             }
             if next_page:
                 params["page"] = next_page
@@ -250,19 +250,20 @@ def get_usage():
             error=f"Failed to fetch usage data: {str(exc)}",
         )
 
-    # Aggregate by model across all time buckets
+    # Aggregate by model across all time buckets.
+    # The Anthropic usage API returns a flat list of (timestamp x model) entries;
+    # each entry has model, input_tokens, cache_read_input_tokens, output_tokens.
     model_totals: dict[str, dict] = {}
-    for bucket in all_buckets:
-        for result in bucket.get("results", []):
-            model = result.get("model") or "unknown"
-            uncached_input = result.get("uncached_input_tokens", 0)
-            cache_read = result.get("cache_read_input_tokens", 0)
-            output = result.get("output_tokens", 0)
-            total_input = uncached_input + cache_read
-            if model not in model_totals:
-                model_totals[model] = {"input_tokens": 0, "output_tokens": 0}
-            model_totals[model]["input_tokens"] += total_input
-            model_totals[model]["output_tokens"] += output
+    for entry in all_buckets:
+        model = entry.get("model") or "unknown"
+        input_tokens = entry.get("input_tokens", 0)
+        cache_read = entry.get("cache_read_input_tokens", 0)
+        output = entry.get("output_tokens", 0)
+        total_input = input_tokens + cache_read
+        if model not in model_totals:
+            model_totals[model] = {"input_tokens": 0, "output_tokens": 0}
+        model_totals[model]["input_tokens"] += total_input
+        model_totals[model]["output_tokens"] += output
 
     by_model = [
         ModelUsage(

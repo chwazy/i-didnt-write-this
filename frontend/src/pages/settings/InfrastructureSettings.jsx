@@ -62,7 +62,7 @@ function UsageSummaryCard({ usage }) {
             <p className="text-xs text-muted-foreground mb-0.5">Est. cost</p>
             <p className="text-lg font-semibold text-foreground">${usage.total_estimated_cost_usd.toFixed(2)}</p>
           </div>
-          {usage.by_model.length > 1 && (
+          {usage.by_model.length >= 1 && (
             <div className="w-full mt-1">
               <p className="text-xs text-muted-foreground mb-1.5">By model</p>
               <div className="flex flex-wrap gap-3">
