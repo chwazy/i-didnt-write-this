@@ -18,6 +18,7 @@ export function getModelDisplayName(modelId, format = 'full') {
 
 export function relativeTime(dateStr) {
   const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return 'Just now'
   const now = new Date()
   const seconds = Math.floor((now - date) / 1000)
 
@@ -34,7 +35,8 @@ export function relativeTime(dateStr) {
 export function formatDuration(created, finished) {
   const start = new Date(created)
   const end = finished ? new Date(finished) : new Date()
-  const seconds = Math.floor((end - start) / 1000)
+  if (isNaN(start.getTime()) || isNaN(end.getTime())) return '0s'
+  const seconds = Math.max(0, Math.floor((end - start) / 1000))
   if (seconds < 60) return `${seconds}s`
   const mins = Math.floor(seconds / 60)
   const secs = seconds % 60

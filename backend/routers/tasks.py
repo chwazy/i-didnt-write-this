@@ -244,9 +244,10 @@ async def ws_task_logs(websocket: WebSocket, task_id: int):
                 )
 
                 for log in logs:
+                    ts = log.timestamp if log.timestamp.tzinfo else log.timestamp.replace(tzinfo=timezone.utc)
                     await websocket.send_json({
                         "id": log.id,
-                        "timestamp": log.timestamp.isoformat(),
+                        "timestamp": ts.isoformat(),
                         "line": log.line,
                     })
                     last_id = log.id
