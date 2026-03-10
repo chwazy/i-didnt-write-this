@@ -177,9 +177,9 @@ export default function Dashboard() {
 
         {tasks.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center">
-            <ClipboardList className="w-12 h-12 text-gray-600 mb-4" />
-            <h2 className="text-xl font-semibold text-gray-300 mb-2">No tasks yet</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-sm">
+            <ClipboardList className="w-12 h-12 text-muted-foreground mb-4" />
+            <h2 className="text-foreground text-lg mb-2">No tasks yet</h2>
+            <p className="text-sm text-muted-foreground mb-8 max-w-sm">
               Create a task to spin up an agent, or add a project first if you haven't already.
             </p>
             <div className="flex items-center gap-3">
@@ -192,7 +192,7 @@ export default function Dashboard() {
               </button>
               <button
                 onClick={() => navigate('/projects')}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-gray-200 text-sm font-medium transition-colors border border-gray-600"
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-accent-foreground border border-input rounded-md hover:bg-accent"
               >
                 <FolderGit2 className="w-4 h-4" />
                 Add Project
