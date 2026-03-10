@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Accent / theme color (overridden by [data-theme]) */
+    --primary: 217 91% 60%;
+    --primary-hover: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Neutral surfaces — zinc palette */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+
+    /* Sidebar */
+    --sidebar: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-border: 240 5.9% 90%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-ring: 240 5.9% 10%;
+  }
+
+  .dark {
+    /* Neutral surfaces — zinc palette */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    /* Sidebar */
+    --sidebar: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
+  }
+}
+
+[data-theme="blue"] {
+  --primary: 217 91% 60%;
+  --primary-hover: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
+}
+
+[data-theme="purple"] {
+  --primary: 263 70% 58%;
+  --primary-hover: 263 70% 50%;
+  --primary-foreground: 0 0% 100%;
+}
+
+[data-theme="rose"] {
+  --primary: 347 77% 55%;
+  --primary-hover: 347 77% 47%;
+  --primary-foreground: 0 0% 100%;
+}
+
+[data-theme="orange"] {
+  --primary: 25 95% 53%;
+  --primary-hover: 25 95% 45%;
+  --primary-foreground: 0 0% 100%;
+}
+
+[data-theme="green"] {
+  --primary: 142 71% 45%;
+  --primary-hover: 142 71% 37%;
+  --primary-foreground: 0 0% 100%;
+}
+
+[data-theme="zinc"] {
+  --primary: 240 5% 45%;
+  --primary-hover: 240 5% 37%;
+  --primary-foreground: 0 0% 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}

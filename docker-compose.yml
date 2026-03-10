@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - db-data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - ANTHROPIC_ADMIN_API_KEY=${ANTHROPIC_ADMIN_API_KEY:-}
+      - DATABASE_URL=sqlite:///./data/claude_agent_manager.db
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  db-data:

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+*.pyc
+__pycache__/
+*.db
+*.sqlite3
+data/
+.vite/
+.claude/
