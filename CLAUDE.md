@@ -91,3 +91,8 @@ Git auth URL format and PR creation differ by platform (see `git_service.py` and
 ## Docker Container Constraints
 
 Agent containers: 2 CPUs, 4GB RAM, `claude-auth` volume mounted read-only at `/root/.claude`. Container names follow `claude-agent-{task_id}`. Containers are not auto-removed (`remove=False`) so the log thread can read final state before cleanup.
+
+## Git Commit Rules
+
+- **Never** append `Co-authored-by: Claude`, `Co-authored-by: claude`, or any AI/assistant attribution trailer to commit messages. Commit messages must contain only the content explicitly provided or approved by the user.
+- **Always** use the git identity (user.name and user.email) defined in the global git configuration (`~/.gitconfig`). Never set or override `user.name`, `user.email`, or `GIT_AUTHOR_*` / `GIT_COMMITTER_*` environment variables. Do not pass `--author` flags to `git commit`.
